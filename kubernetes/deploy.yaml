@@ -1,0 +1,33 @@
+apiVersion: v1
+kind: Service
+metadata:
+    name: sample
+spec:
+    type: LoadBalancer
+    selector:
+        app: webapp2
+    ports:
+        - port: 80
+          name: web
+          targetPort: 5000
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: sample2
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            app: webapp2
+    template:
+        metadata:
+            labels:
+                app: webapp2
+        spec:
+            containers:
+            -   name: webapp2
+                image: reblank/challenge2:latest
+                ports:
+                  - containerPort: 5000
+      
