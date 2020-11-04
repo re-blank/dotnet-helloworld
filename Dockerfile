@@ -1,3 +1,3 @@
 FROM mcr.microsoft.com/dotnet/core/aspnet:3.1
-COPY bin/Debug/netcoreapp3.1/publish/ .
+COPY app/ .
 ENTRYPOINT ["dotnet", "helloWorld.dll"]
